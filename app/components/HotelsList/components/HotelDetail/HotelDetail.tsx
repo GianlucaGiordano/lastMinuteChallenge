@@ -1,9 +1,10 @@
 import { View, Text, FlatList, Image, Linking } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { HotelDetailProps } from './HotelDetail.models';
 import { styles } from './HotelDetail.style';
 
 const HotelDetail = ({ hotel }: HotelDetailProps) => {
+  const [error, setError] = useState(false);
   return (
     <View style={styles.container}>
       <FlatList
@@ -12,9 +13,14 @@ const HotelDetail = ({ hotel }: HotelDetailProps) => {
         keyExtractor={(_item, index) => index.toString()}
         renderItem={({ item }) => (
           <Image
-            source={{ uri: item }}
+            source={
+              error
+                ? require('@assets/images/placeholderImage.png')
+                : { uri: item }
+            }
             style={styles.image}
             resizeMode="contain"
+            onError={() => setError(true)}
           />
         )}
         showsHorizontalScrollIndicator={false}
