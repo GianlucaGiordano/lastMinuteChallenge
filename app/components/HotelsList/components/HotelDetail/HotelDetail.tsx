@@ -1,13 +1,15 @@
-import { View, Text, FlatList, Image, Linking } from 'react-native';
+import { View, Text, Image, Linking } from 'react-native';
 import React, { useState } from 'react';
 import { HotelDetailProps } from './HotelDetail.models';
 import { styles } from './HotelDetail.style';
+import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 
 const HotelDetail = ({ hotel }: HotelDetailProps) => {
   const [error, setError] = useState(false);
   return (
     <View style={styles.container}>
-      <FlatList
+      <BottomSheetFlatList
+        showsHorizontalScrollIndicator={false}
         data={hotel.gallery}
         horizontal
         keyExtractor={(_item, index) => index.toString()}
@@ -23,7 +25,6 @@ const HotelDetail = ({ hotel }: HotelDetailProps) => {
             onError={() => setError(true)}
           />
         )}
-        showsHorizontalScrollIndicator={false}
         style={styles.flatList}
       />
 

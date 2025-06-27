@@ -3,7 +3,7 @@ import CustomButton from '@components/commons/CustomButton/CustomButton';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { GetHotelsResponse } from '@interfaces/getHotelsResponse.interface';
 import { useState, useRef, useEffect } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import HotelCard from './components/HotelCard/HotelCard';
 import { styles } from './HotelsList.style';
 import HotelDetail from './components/HotelDetail/HotelDetail';
@@ -18,6 +18,7 @@ const HotelsList = () => {
   const [selectedHotel, setSelectedHotel] = useState<GetHotelsResponse>();
   const sheetRef = useRef<BottomSheet>(null);
   const arrowHandler = () => (isSortAsc === null ? '' : isSortAsc ? '↑' : '↓');
+  const [fetchError, setFetchError] = useState(false);
 
   const getData = async () => {
     try {
@@ -27,6 +28,7 @@ const HotelsList = () => {
       setOriginalHotelsData(data);
     } catch (error) {
       console.error('Errore durante il fetch:', error);
+      setFetchError(true);
     }
   };
   useEffect(() => {
@@ -46,7 +48,13 @@ const HotelsList = () => {
     setSelectedHotel(hotel);
     sheetRef.current?.expand();
   };
-
+  if (fetchError) {
+    return (
+      <View>
+        <Text>fetch Error</Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <View style={styles.buttonsContainer}>

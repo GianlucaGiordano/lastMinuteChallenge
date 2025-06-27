@@ -7,15 +7,12 @@ export const styles = StyleSheet.create({
     padding: 0,
   },
   flatList: {
-    marginBottom: 0,
-    maxHeight: 240,
+    height: 200,
     backgroundColor: colors.WHITE,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
   },
   image: {
     width: 220,
-    height: 220,
+    height: 200,
     borderRadius: 18,
     marginRight: 14,
     marginVertical: 12,

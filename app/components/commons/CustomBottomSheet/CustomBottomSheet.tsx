@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import BottomSheet, {
   BottomSheetBackdrop,
-  BottomSheetScrollView,
+  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types';
 import { CustomBottomSheetProps } from './CustomBottomSheet.models';
@@ -36,12 +36,13 @@ const CustomBottomSheet = ({
       index={-1}
       snapPoints={expandPoints}
       enableDynamicSizing={false}
-      enablePanDownToClose
+      enablePanDownToClose={false}
+      enableContentPanningGesture={false}
       backdropComponent={renderBackdrop}
     >
-      <BottomSheetScrollView contentContainerStyle={styles.contentContainer}>
+      <BottomSheetView style={styles.contentContainer}>
         {children}
-      </BottomSheetScrollView>
+      </BottomSheetView>
     </BottomSheet>
   );
 };
