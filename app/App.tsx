@@ -1,14 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
-import Homepage from './screens/Homepage/Homepage';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { styles } from './App.style';
+import Homepage from '@screens/Homepage/Homepage';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
